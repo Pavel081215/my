@@ -1,5 +1,8 @@
 package spring;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +11,12 @@ import java.util.List;
  */
 public class Cheks {
     public static void main(String[] args) throws Exception {
+        ApplicationContext  applicationContext = new ClassPathXmlApplicationContext("   application-context.xml");
+        Cheks cheks = (Cheks)  applicationContext.getBean("cheks");
+        cheks.execute();
+    }
+
+    public static void execute() throws Exception {
 
         List list = new ArrayList();
         Task<Long> longTask = new LongTask(-1l);
@@ -21,6 +30,7 @@ public class Cheks {
 
         Cheks cheks = new Cheks();
         cheks.test(list);
+
     }
 
     public void test(List<Task<Long>> intTasks) throws Exception {
